@@ -17,6 +17,7 @@ public class MainManager : MonoBehaviour
 
     public void Initialize()
     {
+        EventBus bus = EventBus.Instance;
         DataManager.Initialize();
         UImanager.Initialize(DataManager);
         UserChoiceManager.Initialize(DataManager);
