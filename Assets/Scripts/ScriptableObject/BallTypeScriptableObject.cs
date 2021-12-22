@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BallSize", menuName = "ScriptableObjects/BallSize", order = 1)]
-public class BallSizeScriptableObject : ScriptableObject
+public class BallTypeScriptableObject : ScriptableObject
 {
     public string SizeName;
     public float minRadius,maxRadius;

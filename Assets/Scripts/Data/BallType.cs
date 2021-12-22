@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallTypes : MonoBehaviour
+public class BallType
 {
-    string TypeName;
-    List<BallColor> PossibleColors;
+    public string TypeName;
+    private List<BallColor> PossibleColors;
 
-    public void Initialize(BallSizeScriptableObject TypeData, Dictionary<string,BallColor> ExistentColors)
+    public void Initialize(BallTypeScriptableObject TypeData, Dictionary<string,BallColor> ExistentColors)
     {
         PossibleColors = new List<BallColor>();
         TypeName = TypeData.name;
@@ -16,11 +16,16 @@ public class BallTypes : MonoBehaviour
         {
             BallColor ballColor =null;
             ExistentColors.TryGetValue(ballColorSO.name, out ballColor);
-            if (ballColor)
+            if (ballColor != null )
             {
                 PossibleColors.Add(ballColor);
             }
         }
     }
+    public List<BallColor> GetBallColors()
+    {
+        return PossibleColors;
+    }
+
 
 }

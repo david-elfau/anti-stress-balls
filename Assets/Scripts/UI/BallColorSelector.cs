@@ -5,20 +5,18 @@ using UnityEngine;
 
 public class BallColorSelector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private BallColor LastColorSelected = null;
+    private BallColor ColorSelected = null;
+
+    public  void Initialize(List<BallColor> existentColors)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ChangeColorSelected(BallColor newColorSelected)
     {
-        
-    }
-
-    internal void Initialize()
-    {
-        throw new NotImplementedException();
+        LastColorSelected = ColorSelected;
+        ColorSelected = newColorSelected;
+        //TODO: Repaint;
     }
 }

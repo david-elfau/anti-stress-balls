@@ -5,20 +5,53 @@ using UnityEngine;
 
 public class BallTypeSelector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject PrefabButton;
+
+    private List<BallType> TypeList;
+    private List<BallTypeButton> ButtonList;
+    private BallType TypeSelected = null;
+    
+    public void Initialize(List<BallType> existentTypes)
     {
-        
+        this.TypeList = existentTypes;
+        InitializeButtons();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void InitializeButtons()
     {
-        
+        ButtonList = new List<BallTypeButton>();
+        foreach (BallType type in TypeList)
+        {
+            GameObject newGameObject = Instantiate(PrefabButton, transform);
+            BallTypeButton newButton = newGameObject.GetComponent<BallTypeButton>();
+
+            newButton.Initizialize(type);
+            ButtonList.Add(newButton);
+        }
+
     }
 
-    internal void Initialize()
+    public void SelectType(string typeName)
     {
-        throw new NotImplementedException();
+        foreach(BallType type in TypeList)
+        {
+            if(type.TypeName == typeName)
+            {
+                SelectType(type);
+                break;
+            }
+        }
     }
+
+    public void SelectType(BallType newTypeSelected)
+    {
+        TypeSelected = newTypeSelected;
+    }
+
+    public void UpdateButtonsStatus()
+    {
+        //TODO Recorrer el listado de botones y activarlos y desactivarlos 
+    }
+
+
 }

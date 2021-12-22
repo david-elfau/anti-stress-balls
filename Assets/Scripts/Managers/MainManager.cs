@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private DataManager DataManager;
+    [SerializeField] private UIManager UImanager;
+    [SerializeField] private UserChoiceManager UserChoiceManager;
+ 
+
+    public void Awake()
     {
-        
+        Initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialize()
     {
-        
+        DataManager.Initialize();
+        UImanager.Initialize(DataManager);
+        UserChoiceManager.Initialize(DataManager);
     }
+
 }

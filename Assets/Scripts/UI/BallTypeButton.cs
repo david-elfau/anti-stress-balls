@@ -7,22 +7,39 @@ public class BallTypeButton : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI SizeNameText;
-    private BallSizeScriptableObject BallSizeData;
+    private BallType BallType;
+    private bool IsSelected = false;
 
-    public void Initizialize(BallSizeScriptableObject ballSizeData )
+    public void Initizialize(BallType ballType )
     {
-        BallSizeData = ballSizeData;
+        BallType = ballType;
         UpdateButtonText();
     }
 
     private void UpdateButtonText()
     {
-        SizeNameText.text = BallSizeData.name;
+        SizeNameText.text = BallType.TypeName;
     }
 
     public void OnButtonTap()
     {
-        Debug.Log("BUTTON " + BallSizeData.name + " tapped");
+        Debug.Log("BUTTON " + BallType.TypeName + " tapped");
     }
 
+    public void SetSelected(bool isSelected)
+    {
+        bool oldStatus = IsSelected;
+        IsSelected = isSelected;
+
+        if(oldStatus != IsSelected)
+        {
+            UpdateButton();
+        }
+    }
+
+    public void UpdateButton()
+    {
+        //TODO change status of the button
+        
+    }
 }

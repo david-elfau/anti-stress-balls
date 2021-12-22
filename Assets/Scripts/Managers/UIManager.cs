@@ -9,10 +9,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BallSizeSelector   SizeSelector;
     [SerializeField] private BallVisor          Visor;
 
-    public void Initialize()
+    public void Initialize(DataManager dataManager)
     {
-        TypeSelector.Initialize();
-        ColorSelector.Initialize();
+        TypeSelector.Initialize(dataManager.GetListBallTypes());
+        ColorSelector.Initialize(dataManager.GetListBallTypes()[0].GetBallColors());
         SizeSelector.Initialize();
         Visor.Initialize();
     }
