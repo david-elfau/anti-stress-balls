@@ -13,7 +13,11 @@
  * I have chosen to define the data in scriptable objects because it allows maintaining a clear structure for every object.
  * There are scriptable objects to store the data, and classes with this data inside the game. because in the case of changing the input, the logic for the rest of the software won't change. We only should change the DataManager initialization.
  
+ ### UI
+ *
  
+ ### Communication between modules
+ *
 
 ## Contact
 
