@@ -3,33 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallTypeSelector : MonoBehaviour
+public class BallTypeSelector : IUIPanel
 {
     [SerializeField] private GameObject PrefabButton;
 
     private List<BallType> TypeList;
-    private List<BallTypeButton> ButtonList;
+    private List<TypeButton> ButtonList;
     private BallType TypeSelected = null;
     
     public void Initialize(List<BallType> existentTypes)
     {
         this.TypeList = existentTypes;
         InitializeButtons();
+        RegisterEvents();
     }
 
     private void InitializeButtons()
     {
-        ButtonList = new List<BallTypeButton>();
+        ButtonList = new List<TypeButton>();
         foreach (BallType type in TypeList)
         {
             GameObject newGameObject = Instantiate(PrefabButton, transform);
-            BallTypeButton newButton = newGameObject.GetComponent<BallTypeButton>();
+            TypeButton newButton = newGameObject.GetComponent<TypeButton>();
 
             newButton.Initizialize(type);
             ButtonList.Add(newButton);
         }
-
     }
+
+    void OnDestroy()
+    {
+        UnregisterEvents();
+    }
+    public override void RegisterEvents()
+    {
+    }
+
+    public override void UnregisterEvents()
+    {
+    }
+
+
 
     public void SelectType(string typeName)
     {
@@ -48,10 +62,8 @@ public class BallTypeSelector : MonoBehaviour
         TypeSelected = newTypeSelected;
     }
 
-    public void UpdateButtonsStatus()
+    public override void UpdateContent()
     {
-        //TODO Recorrer el listado de botones y activarlos y desactivarlos 
+        throw new NotImplementedException();
     }
-
-
 }

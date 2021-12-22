@@ -257,7 +257,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5080959014159651499}
-        m_TargetAssemblyTypeName: BallTypeButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: TypeButton, Assembly-CSharp
         m_MethodName: OnButtonTap
         m_Mode: 1
         m_Arguments:
@@ -280,4 +280,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d72181d5ee36a2448a790a11805b04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SizeNameText: {fileID: 4224489859282458349}
+  ButtonText: {fileID: 4224489859282458349}
