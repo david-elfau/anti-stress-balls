@@ -7,23 +7,20 @@ public class BallColorSelector : MonoBehaviour
 {
     [SerializeField] private GameObject PrefabButton;
 
-    private List<BallColor> ColorList;
     private List<ColorButton> ButtonList;
 
     private BallColor LastColorSelected = null;
-    private BallColor ColorSelected = null;
 
-    public  void Initialize(List<BallColor> existentColors)
+    public  void Initialize(List<BallColor> colorsList)
     {
-        ColorList = existentColors;
-        InitializeButtons();
+        InitializeButtons(colorsList);
         RegisterEvents();
     }
 
-    private void InitializeButtons()
+    private void InitializeButtons(List<BallColor> colorsList)
     {
         ButtonList = new List<ColorButton>();
-        foreach (BallColor color in ColorList)
+        foreach (BallColor color in colorsList)
         {
             GameObject newGameObject = Instantiate(PrefabButton, transform);
             ColorButton newButton = newGameObject.GetComponent<ColorButton>();
@@ -31,19 +28,96 @@ public class BallColorSelector : MonoBehaviour
             newButton.Initizialize(color);
             ButtonList.Add(newButton);
         }
+
+        AutoSelectFirstColor();
     }
 
-    private void ChangeColorSelected(BallColor newColorSelected)
+    public void ReloadButtons(UserChoiceManager UserChoiceManager)
     {
-        LastColorSelected = ColorSelected;
-        ColorSelected = newColorSelected;
-        //TODO: Repaint;
+        List<BallColor> colorsList = UserChoiceManager.BallTypeSelected.GetBallColors();
+
+        int differenceSize = ButtonList.Count - colorsList.Count;
+
+        if (differenceSize > 0)
+        {
+            for (int i = ButtonList.Count - differenceSize; i < ButtonList.Count; i++)
+            {
+                Destroy(ButtonList[i].gameObject);
+            }
+            ButtonList.RemoveRange(ButtonList.Count-differenceSize, differenceSize);
+        }
+
+        for(int i=0; i<colorsList.Count; i++)
+        {
+            if(i+1 > ButtonList.Count)
+            {
+                //Add new button
+                GameObject newGameObject = Instantiate(PrefabButton, transform);
+                ColorButton newButton = newGameObject.GetComponent<ColorButton>();
+
+                newButton.Initizialize(colorsList[i]);
+                ButtonList.Add(newButton);
+            }
+            else
+            {
+                //Reuse button
+                ButtonList[i].Initizialize(colorsList[i]);
+            }
+        }
+
+        SetColorSelect(UserChoiceManager.BallColorSelected);
+    }
+
+    private void SetColorSelect(BallColor ballColorSelected)
+    {
+        if(ballColorSelected != null)
+        {
+            foreach (ColorButton button in ButtonList)
+            {
+                if (button.BallColor == ballColorSelected)
+                {
+                    button.OnButtonTap();
+                }
+            }
+        }
+        else
+        {
+            if (!TryMaintainLastColorSelected())
+            {
+                AutoSelectFirstColor();
+            }
+        }
+    }
+    private bool TryMaintainLastColorSelected()
+    {
+        if (LastColorSelected == null)
+            return false;
+
+        foreach(ColorButton button in ButtonList)
+        {
+            if(button.BallColor == LastColorSelected)
+            {
+                button.OnButtonTap();
+                return true;
+            }            
+        }
+        return false;
+    }
+    private void AutoSelectFirstColor()
+    {
+        ButtonList[0].OnButtonTap();
     }
 
     private void RegisterEvents()
     {
-
+        EventBus.Instance.StartListening(EventName.ChangeType, OnTypeChange);
     }
+
+    private void OnTypeChange(ParameterBusObject parameters)
+    {
+    }
+
+
     void OnDestroy()
     {
         UnregisterEvents();

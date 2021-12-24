@@ -3,25 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallTypeSelector : IUIPanel
+public class BallTypeSelector : MonoBehaviour
 {
     [SerializeField] private GameObject PrefabButton;
 
-    private List<BallType> TypeList;
     private List<TypeButton> ButtonList;
     private BallType TypeSelected = null;
-    
-    public void Initialize(List<BallType> existentTypes)
+
+    public void Initialize(List<BallType> typeList)
     {
-        this.TypeList = existentTypes;
-        InitializeButtons();
-        RegisterEvents();
+        InitializeButtons(typeList);
     }
 
-    private void InitializeButtons()
+    private void InitializeButtons(List<BallType> typeList)
     {
         ButtonList = new List<TypeButton>();
-        foreach (BallType type in TypeList)
+        foreach (BallType type in typeList)
         {
             GameObject newGameObject = Instantiate(PrefabButton, transform);
             TypeButton newButton = newGameObject.GetComponent<TypeButton>();
@@ -29,41 +26,32 @@ public class BallTypeSelector : IUIPanel
             newButton.Initizialize(type);
             ButtonList.Add(newButton);
         }
+
+
+        AutoSelectFirstType();
     }
 
-    void OnDestroy()
+    private void AutoSelectFirstType()
     {
-        UnregisterEvents();
-    }
-    public override void RegisterEvents()
-    {
+        ButtonList[0].OnButtonTap();
     }
 
-    public override void UnregisterEvents()
+    public void SelectedType(BallType type)
     {
-    }
-
-
-
-    public void SelectType(string typeName)
-    {
-        foreach(BallType type in TypeList)
+        if (TypeSelected == null || TypeSelected != type)
         {
-            if(type.TypeName == typeName)
+            foreach (TypeButton button in ButtonList)
             {
-                SelectType(type);
-                break;
+                if (button.BallType == type)
+                {
+                    TypeSelected = button.BallType;
+                    button.SetSelected(true);
+                }
+                else
+                {
+                    button.SetSelected(false);
+                }
             }
         }
-    }
-
-    public void SelectType(BallType newTypeSelected)
-    {
-        TypeSelected = newTypeSelected;
-    }
-
-    public override void UpdateContent()
-    {
-        throw new NotImplementedException();
     }
 }

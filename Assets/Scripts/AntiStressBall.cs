@@ -7,18 +7,17 @@ public class AntiStressBall : MonoBehaviour
     [SerializeField] private Material BallMaterial;
 
 
-
     public void Initialize(Color color, float radio)
     {
         ChangeColor(color);
         ChangeSize(radio);
     }
-    private void ChangeColor(Color color)
+    public void ChangeColor(Color color)
     {
         BallMaterial.color = color;
     }
 
-    private void ChangeSize(float radius)
+    public void ChangeSize(float radius)
     {
         float diameter = radius * 2f;
         gameObject.transform.localScale = new Vector3(diameter, diameter, diameter);

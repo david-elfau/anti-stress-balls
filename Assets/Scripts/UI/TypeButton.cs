@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TypeButton : GenericButton
 {
-    private BallType BallType;
+    public BallType BallType;
 
     public void Initizialize(BallType ballType)
     {
@@ -17,13 +17,6 @@ public class TypeButton : GenericButton
     public override void OnButtonTap()
     {
         Debug.Log("BUTTON " + BallType.TypeName + " tapped");
-        SetSelected(true);
-    }
-
-
-
-    protected override void UpdateButton()
-    {
-        throw new System.NotImplementedException();
+        EventBus.Instance.TriggerEvent(EventName.ChangeType, new ParameterBusObject(BallType.TypeName));
     }
 }

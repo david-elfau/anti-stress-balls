@@ -14,10 +14,9 @@ public class DataManager : MonoBehaviour
     {
         ExistentColors = new Dictionary<string, BallColor>();
         ExistentTypes = new List<BallType>();
-
         foreach(BallTypeScriptableObject typeData in DataInput)
         {
-            foreach(BallColorScriptableObject colorData in typeData.PosibleColor)
+            foreach (BallColorScriptableObject colorData in typeData.PosibleColor)
             {
                 CreateBallColor(colorData);
             }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5354361e6b9ae47ba6193b446032c9, type: 3}
   m_Name: Yellow
   m_EditorClassIdentifier: 
-  ColorName: Black
+  ColorName: Yellow
   BallColor: {r: 0.96470594, g: 0.8980393, b: 0.5529412, a: 1}

@@ -12,12 +12,19 @@
 ### Data management:
  * I have chosen to define the data in scriptable objects because it allows maintaining a clear structure for every object.
  * There are scriptable objects to store the data, and classes with this data inside the game. because in the case of changing the input, the logic for the rest of the software won't change. We only should change the DataManager initialization.
+
  
- ### UI
- *
+ ### Event Bus
+ * I have created an Event Bus to allow the modules listening and trigger generic events.
+ * Events are created by a event name and a parameter object.
+ * Name is gotten from a enumeration of events name to avoid typo errors.
+ * Parameter objects is managed by the class "ParameterBusObject" to create methods to handle different objects easily.
  
- ### Communication between modules
- *
+  
+ ### Interaction
+ * Selectors are seperated in his own class (type, color, size)
+ * Buttons triggers events when are tapped.
+ * Events are listened from the UI manager. This indicates the subpanels to update depending on the input.
 
 ## Contact
 

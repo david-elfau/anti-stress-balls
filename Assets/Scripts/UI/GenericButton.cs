@@ -15,15 +15,8 @@ public abstract class GenericButton : MonoBehaviour
 
     public void SetSelected(bool isSelected)
     {
-        bool oldStatus = IsSelected;
         IsSelected = isSelected;
-
-        if (oldStatus != IsSelected)
-        {
-            UpdateButton();
-        }
     }
-    protected abstract void UpdateButton();
 
     public abstract void OnButtonTap();
 

@@ -3,33 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallVisor : IUIPanel
+public class BallVisor : MonoBehaviour
 {
-
+    [SerializeField] private AntiStressBall Ball;
     public void Initialize()
     {
-        RegisterEvents();
     }
     void OnDestroy()
     {
-        UnregisterEvents();
     }
 
-    public override void RegisterEvents()
+    public void ReloadVisor(UserChoiceManager userChoice)
     {
-        throw new NotImplementedException();
+        Ball.ChangeColor(userChoice.BallColorSelected.UIColor);
+        Ball.ChangeSize(userChoice.BallSizeSelected);
+
     }
-
-    public override void UnregisterEvents()
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void UpdateContent()
-    {
-        throw new NotImplementedException();
-    }
-
-
-
 }
