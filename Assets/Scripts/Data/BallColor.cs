@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallColor
+public class BallColor : IBallColor
 {
-    public string ColorName;
-    public Color UIColor;
-    public bool OverridesDefaultSize = false;
-    public float OverrideSizeValue;
-
-    public void Initialize(BallColorScriptableObject ColorData)
+    public override void Initialize(IBallColorScriptableObject ColorData)
     {
         ColorName = ColorData.ColorName;
         UIColor = ColorData.BallColor;
-        OverridesDefaultSize = ColorData.OverridesDefaultSize;
-        OverrideSizeValue = ColorData.OverrideSizeValue;
     }
+
+    public override bool DoOverrideDefaultSize(out float defaultValue)
+    {
+        defaultValue = float.NaN;
+        return false;
+    }
+
 
 }

@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BallSizeSelected: 0
+  SizeStep: 0.1
 --- !u!1 &950430741175730120
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,9 +136,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataInput:
-  - {fileID: 11400000, guid: 54475365d4860ce499fcd455092f1b33, type: 2}
-  - {fileID: 11400000, guid: 4f9600005413596499042533498039d0, type: 2}
   - {fileID: 11400000, guid: 493bf083af7fe56418d1e007cbe3a2d2, type: 2}
+  - {fileID: 11400000, guid: 4f9600005413596499042533498039d0, type: 2}
+  - {fileID: 11400000, guid: 54475365d4860ce499fcd455092f1b33, type: 2}
 --- !u!1 &950430741523537662
 GameObject:
   m_ObjectHideFlags: 0

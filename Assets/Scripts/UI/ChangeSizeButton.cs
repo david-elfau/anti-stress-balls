@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ChangeSizeButton : GenericButton
+public class ChangeSizeButton : IButton
 {
     public bool IncreasesValue = true;
 
@@ -24,16 +24,6 @@ public class ChangeSizeButton : GenericButton
 
     public override void OnButtonTap()
     {
-        if (IncreasesValue)
-        {
-
-            Debug.Log("INCREASE VALUE");
-        }
-        else
-        {
-            Debug.Log("DECREASE VALUE");
-
-        }
         EventBus.Instance.TriggerEvent(EventName.ChangeSize, new ParameterBusObject(IncreasesValue));
     }
 }

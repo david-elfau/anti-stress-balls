@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public abstract class GenericButton : MonoBehaviour
+public abstract class IButton : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI ButtonText;
     protected bool IsSelected = false;

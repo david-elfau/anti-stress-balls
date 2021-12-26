@@ -3,10 +3,10 @@
 ## Decisions taken
 
 ### General Philosophy
-* Make the app as most understanding, traceable and flexible as possible.
-* For this reason, I have tried to make as few properties visible as possible on the GameObjects.
-* I have created a MainManager that initialized the rest of the Manager and scripts.
-* Managers are saved as prefab.
+ * Make the app as most understanding, traceable and flexible as possible.
+ * For this reason, I have tried to make as few properties visible as possible on the GameObjects.
+ * I have created a MainManager that initialized the rest of the Manager and scripts.
+ * Managers are saved as prefab.
 
 
 ### Data management:
@@ -19,12 +19,18 @@
  * Events are created by a event name and a parameter object.
  * Name is gotten from a enumeration of events name to avoid typo errors.
  * Parameter objects is managed by the class "ParameterBusObject" to create methods to handle different objects easily.
- 
-  
+   
  ### Interaction
- * Selectors are seperated in his own class (type, color, size)
+ * Selectors are seperated in his own class (type, color, size).
  * Buttons triggers events when are tapped.
  * Events are listened from the UI manager. This indicates the subpanels to update depending on the input.
+ 
+ ### Black ball implementation
+ * To allow a specific behavior on the black ball I have created an abstract color (IBallColor).
+ * All colors are subclasses of the abstract color.
+ * Black color is a specific type of color with a method to fix a size  (BallColorOverridesSize).
+ * The rest of the colors have a basic behavior (BallColor).
+* This structure is repeated on the ScriptableObjects.
 
 ## Contact
 

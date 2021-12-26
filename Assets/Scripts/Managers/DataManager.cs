@@ -6,17 +6,17 @@ public class DataManager : MonoBehaviour
 {
     [SerializeField] private List<BallTypeScriptableObject> DataInput;
 
-    private Dictionary<string, BallColor> ExistentColors;
+    private Dictionary<string, IBallColor> ExistentColors;
     private List<BallType> ExistentTypes;
 
 
     public void Initialize()
     {
-        ExistentColors = new Dictionary<string, BallColor>();
+        ExistentColors = new Dictionary<string, IBallColor>();
         ExistentTypes = new List<BallType>();
         foreach(BallTypeScriptableObject typeData in DataInput)
         {
-            foreach (BallColorScriptableObject colorData in typeData.PosibleColor)
+            foreach (IBallColorScriptableObject colorData in typeData.PosibleColor)
             {
                 CreateBallColor(colorData);
             }
@@ -27,11 +27,20 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    private void CreateBallColor(BallColorScriptableObject colorData)
+    private void CreateBallColor(IBallColorScriptableObject colorData)
     {
         if (!ExistentColors.ContainsKey(colorData.ColorName))
         {
-            BallColor ballColor = new BallColor();
+            IBallColor ballColor;
+
+            if (colorData is BallColorOverrideSizeScriptableObject)
+            {
+                ballColor = new BallColorOverridesSize();
+            }
+            else
+            {
+                ballColor = new BallColor();
+            }
             ballColor.Initialize(colorData);
             ExistentColors.Add(colorData.ColorName, ballColor);
         }
@@ -41,7 +50,7 @@ public class DataManager : MonoBehaviour
     {
         return ExistentTypes;
     }
-    public Dictionary<string, BallColor> GetAllColors()
+    public Dictionary<string, IBallColor> GetAllColors()
     {
         return ExistentColors;
     }

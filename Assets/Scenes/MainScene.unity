@@ -1460,6 +1460,18 @@ PrefabInstance:
       propertyPath: ColorSelector
       value: 
       objectReference: {fileID: 1603933135}
+    - target: {fileID: 950430741175730122, guid: c35bbbb0219b3174ab7f430a5dfffa08, type: 3}
+      propertyPath: DataInput.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 493bf083af7fe56418d1e007cbe3a2d2, type: 2}
+    - target: {fileID: 950430741175730122, guid: c35bbbb0219b3174ab7f430a5dfffa08, type: 3}
+      propertyPath: DataInput.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f9600005413596499042533498039d0, type: 2}
+    - target: {fileID: 950430741175730122, guid: c35bbbb0219b3174ab7f430a5dfffa08, type: 3}
+      propertyPath: DataInput.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 54475365d4860ce499fcd455092f1b33, type: 2}
     - target: {fileID: 950430741523537656, guid: c35bbbb0219b3174ab7f430a5dfffa08, type: 3}
       propertyPath: m_RootOrder
       value: 4

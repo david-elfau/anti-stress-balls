@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TypeButton : GenericButton
+public class TypeButton : IButton
 {
     public BallType BallType;
 
@@ -16,7 +16,6 @@ public class TypeButton : GenericButton
 
     public override void OnButtonTap()
     {
-        Debug.Log("BUTTON " + BallType.TypeName + " tapped");
         EventBus.Instance.TriggerEvent(EventName.ChangeType, new ParameterBusObject(BallType.TypeName));
     }
 }

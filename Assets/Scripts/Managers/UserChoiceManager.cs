@@ -4,7 +4,7 @@ using UnityEngine;
 public class UserChoiceManager : MonoBehaviour
 {
     public BallType BallTypeSelected = null;
-    public BallColor BallColorSelected = null;
+    public IBallColor BallColorSelected = null;
     public float BallSizeSelected = 1;
     public float SizeStep = 0.1f;
 
@@ -43,7 +43,7 @@ public class UserChoiceManager : MonoBehaviour
         string colorName = parameters.GetParameterString();
         BallSizeSelected = 1;
 
-        foreach (BallColor color in BallTypeSelected.GetBallColors())
+        foreach (IBallColor color in BallTypeSelected.GetBallColors())
         {
             if (color.ColorName == colorName)
             {
@@ -62,7 +62,10 @@ public class UserChoiceManager : MonoBehaviour
 
     private void ChangeBallSize(bool increase)
     {
-        if (!BallColorSelected.OverridesDefaultSize)
+
+        float overrideSize;
+
+        if (!BallColorSelected.DoOverrideDefaultSize(out overrideSize))
         {
             float sizeCandidate = BallSizeSelected;
             if (increase)
@@ -81,9 +84,11 @@ public class UserChoiceManager : MonoBehaviour
 
     private void PlaceSizeOnBounds()
     {
-        if (BallColorSelected != null && BallColorSelected.OverridesDefaultSize)
+        float overrideSize;
+
+        if (BallColorSelected != null && BallColorSelected.DoOverrideDefaultSize(out overrideSize))
         {
-            BallSizeSelected = BallColorSelected.OverrideSizeValue;
+            BallSizeSelected = overrideSize;
         }
         else
         {

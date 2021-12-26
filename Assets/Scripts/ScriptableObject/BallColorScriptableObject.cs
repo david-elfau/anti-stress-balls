@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BallColor", menuName = "ScriptableObjects/BallColor", order = 2)]
-public class BallColorScriptableObject : ScriptableObject
+public class BallColorScriptableObject : IBallColorScriptableObject
 {
-    public string ColorName;
-    public Color BallColor;
 
-    public bool OverridesDefaultSize = false;
-    public float OverrideSizeValue = 0;
 }

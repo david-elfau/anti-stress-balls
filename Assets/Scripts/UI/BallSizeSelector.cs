@@ -27,7 +27,9 @@ public class BallSizeSelector : MonoBehaviour
     {
         if (userChoiceManager.BallTypeSelected != null && userChoiceManager.BallColorSelected != null)
         {
-            if (userChoiceManager.BallColorSelected.OverridesDefaultSize)
+            float overrideSize;
+
+            if (userChoiceManager.BallColorSelected.DoOverrideDefaultSize(out overrideSize))
             {
                 IncreaseButton.gameObject.SetActive(false);
                 DecreaseButton.gameObject.SetActive(false);

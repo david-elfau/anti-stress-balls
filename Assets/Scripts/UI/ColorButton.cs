@@ -4,11 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorButton : GenericButton
+public class ColorButton : IButton
 {
-    public BallColor BallColor;
+    public IBallColor BallColor;
 
-    public void Initizialize(BallColor ballColor)
+    public void Initizialize(IBallColor ballColor)
     {
         BallColor = ballColor;
         UpdateButtonText(BallColor.ColorName);

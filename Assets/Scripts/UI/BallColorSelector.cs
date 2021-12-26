@@ -9,18 +9,18 @@ public class BallColorSelector : MonoBehaviour
 
     private List<ColorButton> ButtonList;
 
-    private BallColor LastColorSelected = null;
+    private IBallColor LastColorSelected = null;
 
-    public  void Initialize(List<BallColor> colorsList)
+    public void Initialize(List<IBallColor> colorsList)
     {
         InitializeButtons(colorsList);
         RegisterEvents();
     }
 
-    private void InitializeButtons(List<BallColor> colorsList)
+    private void InitializeButtons(List<IBallColor> colorsList)
     {
         ButtonList = new List<ColorButton>();
-        foreach (BallColor color in colorsList)
+        foreach (IBallColor color in colorsList)
         {
             GameObject newGameObject = Instantiate(PrefabButton, transform);
             ColorButton newButton = newGameObject.GetComponent<ColorButton>();
@@ -34,7 +34,7 @@ public class BallColorSelector : MonoBehaviour
 
     public void ReloadButtons(UserChoiceManager UserChoiceManager)
     {
-        List<BallColor> colorsList = UserChoiceManager.BallTypeSelected.GetBallColors();
+        List<IBallColor> colorsList = UserChoiceManager.BallTypeSelected.GetBallColors();
 
         int differenceSize = ButtonList.Count - colorsList.Count;
 
@@ -68,7 +68,7 @@ public class BallColorSelector : MonoBehaviour
         SetColorSelect(UserChoiceManager.BallColorSelected);
     }
 
-    private void SetColorSelect(BallColor ballColorSelected)
+    private void SetColorSelect(IBallColor ballColorSelected)
     {
         if(ballColorSelected != null)
         {
