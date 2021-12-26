@@ -6,6 +6,8 @@ public class UserChoiceManager : MonoBehaviour
     public BallType BallTypeSelected = null;
     public BallColor BallColorSelected = null;
     public float BallSizeSelected = 1;
+    public float SizeStep = 0.1f;
+
 
     DataManager DataManager;
 
@@ -32,6 +34,8 @@ public class UserChoiceManager : MonoBehaviour
                 break;
             }
         }
+
+        PlaceSizeOnBounds();
     }
 
     public void OnBallColorChange(ParameterBusObject parameters)
@@ -48,9 +52,43 @@ public class UserChoiceManager : MonoBehaviour
             }
         }
 
+        PlaceSizeOnBounds();
     }
     public void OnBallSizeChange(ParameterBusObject parameters)
     {
+        bool changeIsIncrease = parameters.GetParameterBool();
+        ChangeBallSize(changeIsIncrease);
+    }
+
+    private void ChangeBallSize(bool increase)
+    {
+        if (!BallColorSelected.OverridesDefaultSize)
+        {
+            float sizeCandidate = BallSizeSelected;
+            if (increase)
+            {
+                sizeCandidate += SizeStep;
+            }
+            else
+            {
+                sizeCandidate -= SizeStep;
+            }
+
+            BallSizeSelected = Mathf.Clamp(sizeCandidate, BallTypeSelected.minRadius, BallTypeSelected.maxRadius);
+
+        }
+    }
+
+    private void PlaceSizeOnBounds()
+    {
+        if (BallColorSelected != null && BallColorSelected.OverridesDefaultSize)
+        {
+            BallSizeSelected = BallColorSelected.OverrideSizeValue;
+        }
+        else
+        {
+            BallSizeSelected = Mathf.Clamp(BallSizeSelected, BallTypeSelected.minRadius, BallTypeSelected.maxRadius);
+        }
 
     }
 

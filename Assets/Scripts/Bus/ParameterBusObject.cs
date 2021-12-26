@@ -26,7 +26,12 @@ public class ParameterBusObject
     {
         parameterValue = floatParameter;
     }
-   
+    public ParameterBusObject(bool boolParameter)
+    {
+        parameterValue = boolParameter;
+    }
+
+
     public string GetParameterString()
     {
         return parameterValue.ToString();
@@ -55,6 +60,19 @@ public class ParameterBusObject
         catch (Exception)
         {
             return float.MinValue;
+        }
+    }
+
+    public bool GetParameterBool()
+    {
+        try
+        {
+            bool boolValue = (bool)parameterValue;
+            return boolValue;
+        }
+        catch (Exception)
+        {
+            return false;
         }
     }
 }

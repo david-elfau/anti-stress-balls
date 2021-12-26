@@ -7,4 +7,7 @@ public class BallColorScriptableObject : ScriptableObject
 {
     public string ColorName;
     public Color BallColor;
+
+    public bool OverridesDefaultSize = false;
+    public float OverrideSizeValue = 0;
 }

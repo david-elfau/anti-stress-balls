@@ -17,9 +17,7 @@ public class ColorButton : GenericButton
 
     public override void OnButtonTap()
     {
-        Debug.Log("BUTTON " + BallColor.ColorName + " tapped");
         EventBus.Instance.TriggerEvent(EventName.ChangeColor, new ParameterBusObject(BallColor.ColorName));
-
     }
 
 }

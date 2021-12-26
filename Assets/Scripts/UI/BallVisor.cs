@@ -6,7 +6,7 @@ using UnityEngine;
 public class BallVisor : MonoBehaviour
 {
     [SerializeField] private AntiStressBall Ball;
-    public void Initialize()
+    public void Initialize(UserChoiceManager userChoiceManager)
     {
     }
     void OnDestroy()

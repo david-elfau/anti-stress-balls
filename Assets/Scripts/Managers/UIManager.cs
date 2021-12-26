@@ -16,8 +16,8 @@ public class UIManager : MonoBehaviour
         UserChoiceManager = userChoiceManager;
         TypeSelector.Initialize(dataManager.GetListBallTypes());
         ColorSelector.Initialize(dataManager.GetListBallTypes()[0].GetBallColors());
-        SizeSelector.Initialize();
-        Visor.Initialize();
+        SizeSelector.Initialize(userChoiceManager);
+        Visor.Initialize(userChoiceManager);
 
         RegisterEvents();
     }
@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
         UserChoiceManager.OnBallTypeChange(parameters);
         TypeSelector.SelectedType(UserChoiceManager.BallTypeSelected);
         ColorSelector.ReloadButtons(UserChoiceManager);
+        SizeSelector.RefreshData(UserChoiceManager);
         Visor.ReloadVisor(UserChoiceManager);
 
     }
@@ -52,12 +53,14 @@ public class UIManager : MonoBehaviour
     public void OnBallColorChange(ParameterBusObject parameters)
     {
         UserChoiceManager.OnBallColorChange(parameters);
+        SizeSelector.RefreshData(UserChoiceManager);
         Visor.ReloadVisor(UserChoiceManager);
 
     }
     public void OnBallSizeChange(ParameterBusObject parameters)
     {
         UserChoiceManager.OnBallSizeChange(parameters);
+        SizeSelector.RefreshData(UserChoiceManager);
         Visor.ReloadVisor(UserChoiceManager);
 
     }
