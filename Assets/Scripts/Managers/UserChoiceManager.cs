@@ -6,7 +6,7 @@ public class UserChoiceManager : MonoBehaviour
     public BallType BallTypeSelected = null;
     public IBallColor BallColorSelected = null;
     public float BallSizeSelected = 1;
-    public float SizeStep = 0.1f;
+    public const float SizeStep = 0.1f;
 
 
     DataManager DataManager;
@@ -15,6 +15,14 @@ public class UserChoiceManager : MonoBehaviour
     public void Initialize(DataManager dataManager)
     {
         this.DataManager = dataManager;
+        SetDefaultValues();
+    }
+
+    private void SetDefaultValues()
+    {
+        BallTypeSelected = DataManager.GetListBallTypes()[0];
+        BallColorSelected = BallTypeSelected.GetBallColors()[0];
+        BallSizeSelected = BallTypeSelected.minRadius;
     }
 
     void OnDestroy()
@@ -41,7 +49,6 @@ public class UserChoiceManager : MonoBehaviour
     public void OnBallColorChange(ParameterBusObject parameters)
     {
         string colorName = parameters.GetParameterString();
-        BallSizeSelected = 1;
 
         foreach (IBallColor color in BallTypeSelected.GetBallColors())
         {

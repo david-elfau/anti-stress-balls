@@ -47,7 +47,6 @@ public class UIManager : MonoBehaviour
         ColorSelector.ReloadButtons(UserChoiceManager);
         SizeSelector.RefreshData(UserChoiceManager);
         Visor.ReloadVisor(UserChoiceManager);
-
     }
 
     public void OnBallColorChange(ParameterBusObject parameters)
