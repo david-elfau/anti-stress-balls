@@ -16,7 +16,10 @@ public abstract class IButton : MonoBehaviour
     public void SetSelected(bool isSelected)
     {
         IsSelected = isSelected;
+        UpdateStatus();
     }
+
+    public abstract void UpdateStatus();
 
     public abstract void OnButtonTap();
 

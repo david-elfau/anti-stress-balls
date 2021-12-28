@@ -9,17 +9,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private BallSizeSelector   SizeSelector;
     [SerializeField] private BallVisor          Visor;
 
-    UserChoiceManager UserChoiceManager;
+    private UserChoiceManager UserChoiceManager;
 
     public void Initialize(DataManager dataManager, UserChoiceManager userChoiceManager)
     {
         UserChoiceManager = userChoiceManager;
+
         TypeSelector.Initialize(dataManager.GetListBallTypes());
         ColorSelector.Initialize(dataManager.GetListBallTypes()[0].GetBallColors());
         SizeSelector.Initialize(userChoiceManager);
         Visor.Initialize(userChoiceManager);
 
         RegisterEvents();
+
+        //To start the type selector in a initial state
+        ChangeBallTypeSelected();
     }
 
     void OnDestroy()
@@ -43,25 +47,37 @@ public class UIManager : MonoBehaviour
     public void OnBallTypeChange(ParameterBusObject parameters)
     {
         UserChoiceManager.OnBallTypeChange(parameters);
+        ChangeBallTypeSelected();
+    }
+
+    private void ChangeBallTypeSelected()
+    {
         TypeSelector.SelectedType(UserChoiceManager.BallTypeSelected);
+
         ColorSelector.ReloadButtons(UserChoiceManager);
+        ColorSelector.SetSelectedColor(UserChoiceManager.BallColorSelected);
+
         SizeSelector.RefreshData(UserChoiceManager);
         Visor.ReloadVisor(UserChoiceManager);
+
     }
 
     public void OnBallColorChange(ParameterBusObject parameters)
     {
         UserChoiceManager.OnBallColorChange(parameters);
-        SizeSelector.RefreshData(UserChoiceManager);
-        Visor.ReloadVisor(UserChoiceManager);
 
+        ColorSelector.SetSelectedColor(UserChoiceManager.BallColorSelected);
+
+        SizeSelector.RefreshData(UserChoiceManager);
+
+        Visor.ReloadVisor(UserChoiceManager);
     }
     public void OnBallSizeChange(ParameterBusObject parameters)
     {
         UserChoiceManager.OnBallSizeChange(parameters);
+
         SizeSelector.RefreshData(UserChoiceManager);
+
         Visor.ReloadVisor(UserChoiceManager);
-
     }
-
 }

@@ -32,6 +32,12 @@
  * The rest of the colors have a basic behavior (BallColor).
 * This structure is repeated on the ScriptableObjects.
 
+ ### Shaders on UI
+ * I have used Universal Render Pipeline and Shader Graph
+ * I have created an overlay to the buttons to show when is selected.
+ * Buttons selected and non selected use the same shader, but different material. Material changes the parameters of the shader.
+ 
+
 ## Contact
 
 David Elfau - [LinkedIn profile](https://www.linkedin.com/in/delfau/)

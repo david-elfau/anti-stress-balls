@@ -9,9 +9,7 @@ public class BallVisor : MonoBehaviour
     [SerializeField] private CameraController Camera;
     public void Initialize(UserChoiceManager userChoiceManager)
     {
-    }
-    void OnDestroy()
-    {
+        ReloadVisor(userChoiceManager);
     }
 
     public void ReloadVisor(UserChoiceManager userChoice)

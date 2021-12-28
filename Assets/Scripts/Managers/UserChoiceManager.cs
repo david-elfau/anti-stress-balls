@@ -6,9 +6,8 @@ public class UserChoiceManager : MonoBehaviour
     public BallType BallTypeSelected = null;
     public IBallColor BallColorSelected = null;
     public float BallSizeSelected = 1;
-
-    DataManager DataManager;
-
+    
+    private DataManager DataManager;
 
     public void Initialize(DataManager dataManager)
     {

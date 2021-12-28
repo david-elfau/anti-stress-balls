@@ -15,7 +15,7 @@ public class TypeButton : IButton
         BallType = ballType;
         UpdateButtonText(BallType.TypeName);
 
-        ChangeMaterial();
+        SetSelected(false);
     }
 
 
@@ -24,7 +24,7 @@ public class TypeButton : IButton
         EventBus.Instance.TriggerEvent(EventName.ChangeType, new ParameterBusObject(BallType.TypeName));
     }
 
-    private void ChangeMaterial()
+    public override void UpdateStatus()
     {
         if (IsSelected)
         {

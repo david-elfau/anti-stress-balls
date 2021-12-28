@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: ea3e0efd34e06ad418cb5e3687acffac, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainText:
@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_809a2db97a6649b698ec0927204e940a: 0
-    - _OutlineThickness: 0.05
+    - _OutlineThickness: 0.11
     - _outlineThickness: 0.105590716
     m_Colors:
     - _OutlineColor: {r: 0.61003447, g: 0, b: 1, a: 0}

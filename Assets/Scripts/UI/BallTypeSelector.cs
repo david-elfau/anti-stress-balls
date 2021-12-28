@@ -8,7 +8,7 @@ public class BallTypeSelector : MonoBehaviour
     [SerializeField] private GameObject PrefabButton;
 
     private List<TypeButton> ButtonList;
-    private BallType TypeSelected = null;
+    private BallType LastTypeSelected = null;
 
     public void Initialize(List<BallType> typeList)
     {
@@ -38,13 +38,13 @@ public class BallTypeSelector : MonoBehaviour
 
     public void SelectedType(BallType type)
     {
-        if (TypeSelected == null || TypeSelected != type)
+        if (LastTypeSelected == null || LastTypeSelected != type)
         {
             foreach (TypeButton button in ButtonList)
             {
                 if (button.BallType == type)
                 {
-                    TypeSelected = button.BallType;
+                    LastTypeSelected = button.BallType;
                     button.SetSelected(true);
                 }
                 else

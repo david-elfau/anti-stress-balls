@@ -29,7 +29,6 @@ public class EventBus
         {
             eventDictionary = new Dictionary<EventName, UnityEvent<ParameterBusObject>>();
         }
-        Debug.Log("EventBus Init");
     }
 
     public void TriggerEvent(EventName eventName, ParameterBusObject parameterObject)

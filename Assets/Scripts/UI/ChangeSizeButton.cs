@@ -26,4 +26,8 @@ public class ChangeSizeButton : IButton
     {
         EventBus.Instance.TriggerEvent(EventName.ChangeSize, new ParameterBusObject(IncreasesValue));
     }
+
+    public override void UpdateStatus()
+    {
+    }
 }

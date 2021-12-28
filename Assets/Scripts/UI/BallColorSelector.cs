@@ -34,10 +34,12 @@ public class BallColorSelector : MonoBehaviour
 
     public void ReloadButtons(UserChoiceManager UserChoiceManager)
     {
+        //Get new colors
         List<IBallColor> colorsList = UserChoiceManager.BallTypeSelected.GetBallColors();
 
         int differenceSize = ButtonList.Count - colorsList.Count;
 
+        //Remove not needed buttons
         if (differenceSize > 0)
         {
             for (int i = ButtonList.Count - differenceSize; i < ButtonList.Count; i++)
@@ -65,47 +67,39 @@ public class BallColorSelector : MonoBehaviour
             }
         }
 
-        SetColorSelect(UserChoiceManager.BallColorSelected);
+        SetSelectedColor(UserChoiceManager.BallColorSelected);
     }
 
-    private void SetColorSelect(IBallColor ballColorSelected)
+    public void SetSelectedColor(IBallColor ballColorSelected)
     {
-        if(ballColorSelected != null)
+        bool IsColorSelected = false;
+        foreach (ColorButton button in ButtonList)
         {
-            foreach (ColorButton button in ButtonList)
+            if (LastColorSelected == null || button.BallColor == ballColorSelected)
             {
-                if (button.BallColor == ballColorSelected)
-                {
-                    button.OnButtonTap();
-                }
+                LastColorSelected = ballColorSelected;
+                button.SetSelected(true);
+                IsColorSelected = true;
+            }
+            else
+            {
+                button.SetSelected(false);
             }
         }
-        else
+        if(!IsColorSelected)
         {
-            if (!TryMaintainLastColorSelected())
-            {
-                AutoSelectFirstColor();
-            }
+            AutoSelectFirstColor();
         }
-    }
-    private bool TryMaintainLastColorSelected()
-    {
-        if (LastColorSelected == null)
-            return false;
+        
 
-        foreach(ColorButton button in ButtonList)
-        {
-            if(button.BallColor == LastColorSelected)
-            {
-                button.OnButtonTap();
-                return true;
-            }            
-        }
-        return false;
     }
+    
     private void AutoSelectFirstColor()
     {
-        ButtonList[0].OnButtonTap();
+        if(ButtonList.Count>0)
+        {
+            ButtonList[0].OnButtonTap();
+        }
     }
 
     private void RegisterEvents()
