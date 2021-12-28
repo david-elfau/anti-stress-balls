@@ -41,7 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_809a2db97a6649b698ec0927204e940a: 0
-    - _OutlineThickness: 0.05
+    - _OutlineThickness: 0
     - _outlineThickness: 0.105590716
     m_Colors:
     - _OutlineColor: {r: 0.61003447, g: 0, b: 1, a: 0}

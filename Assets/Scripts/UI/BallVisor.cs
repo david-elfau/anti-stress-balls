@@ -18,7 +18,6 @@ public class BallVisor : MonoBehaviour
     {
         Ball.ChangeColor(userChoice.BallColorSelected.UIColor);
         Ball.ChangeSize(userChoice.BallSizeSelected);
-        Camera.PointTo(Ball.transform);
-
+        Camera.PointTo(Ball.transform.position+new Vector3(0,userChoice.BallSizeSelected,0));
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Camera MainCamera;
+    public Vector3 offset;
 
-    public void PointTo(Transform target)
+    public void PointTo(Vector3 point)
     {
-        MainCamera.transform.LookAt(target);
+        MainCamera.transform.LookAt(point + offset);
     }
 
 }
