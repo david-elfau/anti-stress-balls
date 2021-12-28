@@ -44,5 +44,5 @@ Material:
     - _OutlineThickness: 0
     - _outlineThickness: 0.105590716
     m_Colors:
-    - _OutlineColor: {r: 0.61003447, g: 0, b: 1, a: 0}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
