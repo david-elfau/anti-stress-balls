@@ -6,8 +6,6 @@ public class UserChoiceManager : MonoBehaviour
     public BallType BallTypeSelected = null;
     public IBallColor BallColorSelected = null;
     public float BallSizeSelected = 1;
-    public const float SizeStep = 0.1f;
-
 
     DataManager DataManager;
 
@@ -77,11 +75,11 @@ public class UserChoiceManager : MonoBehaviour
             float sizeCandidate = BallSizeSelected;
             if (increase)
             {
-                sizeCandidate += SizeStep;
+                sizeCandidate += Constants.IncreaseSizeStep;
             }
             else
             {
-                sizeCandidate -= SizeStep;
+                sizeCandidate -= Constants.IncreaseSizeStep;
             }
 
             BallSizeSelected = Mathf.Clamp(sizeCandidate, BallTypeSelected.minRadius, BallTypeSelected.maxRadius);

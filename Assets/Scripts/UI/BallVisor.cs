@@ -6,6 +6,7 @@ using UnityEngine;
 public class BallVisor : MonoBehaviour
 {
     [SerializeField] private AntiStressBall Ball;
+    [SerializeField] private CameraController Camera;
     public void Initialize(UserChoiceManager userChoiceManager)
     {
     }
@@ -17,6 +18,7 @@ public class BallVisor : MonoBehaviour
     {
         Ball.ChangeColor(userChoice.BallColorSelected.UIColor);
         Ball.ChangeSize(userChoice.BallSizeSelected);
+        Camera.PointTo(Ball.transform);
 
     }
 }
